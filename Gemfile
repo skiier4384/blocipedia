@@ -39,6 +39,8 @@ source 'https://rubygems.org'
  
  gem 'devise'
  
+ gem 'gravatar'
+ 
  # Used for encrypting User passwords
  gem 'bcrypt'
  
