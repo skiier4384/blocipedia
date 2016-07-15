@@ -41,6 +41,8 @@ source 'https://rubygems.org'
  
  gem 'gravatar'
  
+ gem 'pundit'
+ 
  # Used for encrypting User passwords
  gem 'bcrypt'
  
