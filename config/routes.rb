@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'wikis/new'
+
+  get 'wikis/edit'
+
+  get 'wikis/index'
+
+  get 'wikis/show'
+
+  get 'users/new'
+
+  get 'users/confirm'
+
+  get 'users/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
