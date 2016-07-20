@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  #get 'welcome/index'
 
-  get 'welcome/about'
+  #get 'welcome/about'
+  
+  get 'about' => 'welcome#about'
   
   root 'welcome#index'
 
-  get 'wikis/new'
+  #get 'wikis/new'
 
-  get 'wikis/edit'
+  #get 'wikis/edit'
 
-  get 'wikis/index'
+  #get 'wikis/index'
 
-  get 'wikis/show'
+  #get 'wikis/show'
+  
+  resources :wikis
 
   get 'users/new'
 
