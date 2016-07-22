@@ -17,11 +17,13 @@ Rails.application.routes.draw do
   
   resources :wikis
 
-  get 'users/new'
+  #get 'users/new'
 
-  get 'users/confirm'
+  #get 'users/confirm'
 
-  get 'users/show'
+  #get 'users/show'
+  
+  resources :users, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
