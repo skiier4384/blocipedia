@@ -15,6 +15,14 @@
    email: 'youremail.com', # replace this with your personal email
    password: 'helloworld'
  )
+ 
+ # Create Admin
+  admin = User.create!(
+    username: RandomData.random_name,
+    email: RandomData.random_email,,
+    password: RandomData.random_sentence,
+    role: 'admin'
+)
 
  # Create Wikis
  50.times do
