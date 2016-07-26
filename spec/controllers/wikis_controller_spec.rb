@@ -10,38 +10,38 @@ RSpec.describe WikisController, type: :controller do
     context "guest user" do
      describe "GET show" do
        it "returns http success" do
-         get :show, topic_id: my_topic.id, id: my_post.id
+         get :show, id: my_wiki.id
          expect(response).to have_http_status(:success)
        end
  
        it "renders the #show view" do
-         get :show, topic_id: my_topic.id, id: my_post.id
+         get :show, id: my_wiki.id
          expect(response).to render_template :show
        end
  
-       it "assigns my_post to @post" do
-         get :show, topic_id: my_topic.id, id: my_post.id
-         expect(assigns(:post)).to eq(my_post)
+       it "assigns my_wiki to @wiki" do
+         get :show, id: my_wiki.i
+         expect(assigns(:wiki)).to eq(my_wiki)
        end
      end
  
      describe "GET new" do
        it "returns http redirect" do
-         get :new, topic_id: my_topic.id
+         get :new, id: my_wiki.id
          expect(response).to redirect_to(new_session_path)
        end
      end
  
      describe "POST create" do
        it "returns http redirect" do
-         post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+         post :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
          expect(response).to redirect_to(new_session_path)
        end
      end
  
      describe "GET edit" do
        it "returns http redirect" do
-         get :edit, topic_id: my_topic.id, id: my_post.id
+         get :edit, id: my_wiki.id
          expect(response).to redirect_to(new_session_path)
        end
      end
@@ -51,17 +51,22 @@ RSpec.describe WikisController, type: :controller do
          new_title = RandomData.random_sentence
          new_body = RandomData.random_paragraph
  
-         put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
+         put :update, wiki: {title: new_title, body: new_body}
          expect(response).to redirect_to(new_session_path)
        end
      end
  
      describe "DELETE destroy" do
        it "returns http redirect" do
-         delete :destroy, topic_id: my_topic.id, id: my_post.id
+         delete :destroy, id: my_wiki.id
          expect(response).to have_http_status(:redirect)
        end
      end
+   end
+   
+  context "signed-in user" do
+   before do
+       create_session(my_user)
    end
    
    describe "GET index" do
@@ -110,18 +115,18 @@ RSpec.describe WikisController, type: :controller do
       end
     end
  
-    describe "WIKI create" do
+    describe "POST create" do
       it "increases the number of wiki by 1" do
-        expect{wiki :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Wiki,:count).by(1)
+        expect{post :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Wiki,:count).by(1)
       end
  
       it "assigns the new wiki to @wiki" do
-        wiki :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        post :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
         expect(assigns(:wiki)).to eq Wiki.last
       end
  
       it "redirects to the new wiki" do
-        wiki :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        post :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
         expect(response).to redirect_to Wiki.last
       end
     end
@@ -181,5 +186,6 @@ RSpec.describe WikisController, type: :controller do
        delete :destroy, {id: my_wiki.id}
        expect(response).to redirect_to wikis_path
      end
+    end
    end
 end
