@@ -20,7 +20,7 @@ RSpec.describe WikisController, type: :controller do
        end
  
        it "assigns my_wiki to @wiki" do
-         get :show, id: my_wiki.i
+         get :show, id: my_wiki.id
          expect(assigns(:wiki)).to eq(my_wiki)
        end
      end
